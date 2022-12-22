@@ -9,6 +9,8 @@ git clone https://github.com/sergejey/majordomo-rpi-install.git
 
 cd majordomo-rpi-install
 
+clear
+
 source "./libraries/general.sh"
 
 helloWorld
