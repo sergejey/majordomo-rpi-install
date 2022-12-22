@@ -9,6 +9,7 @@ git clone https://github.com/sergejey/majordomo-rpi-install.git
 cd majordomo-rpi-install
 
 my_dir="$(dirname "$0")"
-bash "$my_dir/libraries/general.sh"
+
+source "$my_dir/libraries/general.sh"
 
 helloWorld
