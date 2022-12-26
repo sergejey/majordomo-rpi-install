@@ -1,16 +1,61 @@
 #!/bin/sh
 
 cd ~
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install git
 rm -Rf ./majordomo-rpi-install
+sudo apt-get install -y git
 git clone https://github.com/sergejey/majordomo-rpi-install.git
-
 cd majordomo-rpi-install
-
 clear
 
 source "./libraries/general.sh"
 
-helloWorld
+# Remove old log file if exists
+if [ -f $LOG_FILE ]; then
+  rm $LOG_FILE
+fi
+
+showMessage "Starting installation script."
+
+# Ask for details
+source "./sections/questions.sh"
+
+# Common preparation
+
+source "./sections/common.sh"
+source "./sections/install_apache.sh"
+source "./sections/install_php.sh"
+source "./sections/install_db.sh"
+source "./sections/install_phpmyadmin.sh"
+source "./sections/install_majordomo.sh"
+source "./sections/install_mosquitto.sh"
+if [ $install_homebridge == "y" ]; then
+ source "./sections/install_homebridge.sh"
+fi
+if [ $install_rhvoice == "y" ]; then
+ source "./sections/install_rhvoice.sh"
+fi
+if [ $install_redist == "y" ]; then
+ source "./sections/install_redis.sh"
+fi
+if [ $install_z2m == "y" ]; then
+ source "./sections/install_zigbee2mqtt.sh"
+fi
+#todo
+#if [ $install_zwave2mqtt == "y" ]; then
+# source "./sections/install_zwave2mqtt.sh"
+#fi
+#if [ $install_knx2mqtt == "y" ]; then
+# source "./sections/install_knx2mqtt.sh"
+#fi
+
+# UPDATE ALL MODULES
+wget -q http://localhost/modules/market/update_iframe.php?mode2=update_all
+
+showMessage "Installation complete."
+showMessage "Log file for details: $LOG_FILE"
+
+read -p "Do you want to reboot now (y/n) [n]: " rebootnow
+rebootnow=${rebootnow:-n}
+if [ $rebootnow == "y" ]; then
+ sudo shutdown -r now
+fi

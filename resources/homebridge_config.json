@@ -1,0 +1,21 @@
+{
+  "bridge": {
+    "name": "MajorDoMo",
+    "username": "CC:22:3D:E3:CE:30",
+    "port": 51826,
+    "pin": "123-45-678"
+  },
+  "description": "MajorDoMo HomeBridge",
+  "accessories": [],
+  "platforms": [
+    {
+      "platform": "mqtt",
+      "name": "mqtt",
+      "url": "mqtt://127.0.0.1",
+      "topic_type": "multiple",
+      "topic_prefix": "homebridge",
+      "username": "",
+      "password": ""
+    }
+  ]
+}
