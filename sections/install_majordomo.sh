@@ -9,7 +9,7 @@ if [ $majordomo_branch == "a" ]; then
   #download alpha
   showMessage "Downloading ALPHA branch."
   wget https://github.com/sergejey/majordomo/archive/refs/heads/alpha.zip>>$LOG_FILE
-  sudo unzip alpha.zip -d /var/www/html>>$LOG_FILE
+  sudo unzip alpha.zip -d /var/www/>>$LOG_FILE
   sudo mv -f /var/www/majordomo-alpha/* /var/www/html/>>$LOG_FILE
   sudo mv -f /var/www/majordomo-alpha/.htaccess /var/www/html/>>$LOG_FILE
   sudo rm -Rf /var/www/majordomo-alpha
