@@ -1,11 +1,19 @@
 #!/bin/sh
 
 cd ~
-rm -Rf ./majordomo-rpi-install
-sudo apt-get install -y git
-git clone https://github.com/sergejey/majordomo-rpi-install.git
+#rm -Rf ./majordomo-rpi-install
+#sudo apt-get install -y git
+#git clone https://github.com/sergejey/majordomo-rpi-install.git
 cd majordomo-rpi-install
 clear
+
+echo "Welcome to MajorDoMo installation script for Raspberry Pi!"
+read -p "Ok, are you ready to start? [y]: " startReady
+startReady=${startReady:-y}
+if [ $startReady != "y" ]; then
+ exit
+fi
+
 
 source "./libraries/general.sh"
 
@@ -13,6 +21,7 @@ source "./libraries/general.sh"
 if [ -f $LOG_FILE ]; then
   rm $LOG_FILE
 fi
+
 
 showMessage "Starting installation script."
 
@@ -34,7 +43,7 @@ fi
 if [ $install_rhvoice == "y" ]; then
  source "./sections/install_rhvoice.sh"
 fi
-if [ $install_redist == "y" ]; then
+if [ $install_redis == "y" ]; then
  source "./sections/install_redis.sh"
 fi
 if [ $install_z2m == "y" ]; then
