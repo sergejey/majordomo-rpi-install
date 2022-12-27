@@ -4,7 +4,7 @@ Installation script to setup __MajorDoMo__ home automation platform on __Rasbper
 
 Usage:
 ```
-curl -s https://raw.githubusercontent.com/sergejey/majordomo-rpi-install/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/sergejey/majordomo-rpi-install/main/install.sh | bash && bash ~/majordomo-rpi-install/install.sh
 ```
 Features:
 * Basic preparations
