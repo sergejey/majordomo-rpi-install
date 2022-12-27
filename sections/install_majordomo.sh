@@ -8,37 +8,39 @@ showMessage "Installing MajorDoMo..."
 if [ $majordomo_branch == "a" ]; then
   #download alpha
   showMessage "Downloading ALPHA branch."
-  wget https://github.com/sergejey/majordomo/archive/refs/heads/alpha.zip>>$LOG_FILE
-  sudo unzip alpha.zip -d /var/www/>>$LOG_FILE
-  sudo mv -f /var/www/majordomo-alpha/* /var/www/html/>>$LOG_FILE
-  sudo mv -f /var/www/majordomo-alpha/.htaccess /var/www/html/>>$LOG_FILE
-  sudo rm -Rf /var/www/majordomo-alpha
-  rm alpha.zip>>$LOG_FILE
+  wget https://github.com/sergejey/majordomo/archive/refs/heads/alpha.zip
+  runSudo "unzip alpha.zip -d /var/www/"
+  runSudo "mv -f /var/www/majordomo-alpha/* /var/www/html/"
+  runSudo "mv -f /var/www/majordomo-alpha/.htaccess /var/www/html/"
+  runSudo "rm -Rf /var/www/majordomo-alpha"
+  rm alpha.zip
 else
   #download master
   showMessage "Downloading MASTER branch."
-  wget https://github.com/sergejey/majordomo/archive/refs/heads/master.zip>>$LOG_FILE
-  sudo unzip master.zip -d /var/www/>>$LOG_FILE
-  sudo mv -f /var/www/majordomo-master/* /var/www/html/>>$LOG_FILE
-  sudo mv -f /var/www/majordomo-master/.htaccess /var/www/html/>>$LOG_FILE
-  sudo rm -Rf /var/www/majordomo-master
-  rm master.zip>>$LOG_FILE
+  wget https://github.com/sergejey/majordomo/archive/refs/heads/master.zip
+  runSudo "unzip master.zip -d /var/www/"
+  runSudo "mv -f /var/www/majordomo-master/* /var/www/html/"
+  runSudo "mv -f /var/www/majordomo-master/.htaccess /var/www/html/"
+  runSudo "rm -Rf /var/www/majordomo-master"
+  rm master.zip
 fi
 
 showMessage "Changing files ownership."
-sudo chown -Rf www-data:www-data /var/www/html>>$LOG_FILE
+runSudo "chown -Rf www-data:www-data /var/www/html"
 showMessage "Removing index.html."
-sudo rm /var/www/html/index.html>>$LOG_FILE
+runSudo "rm /var/www/html/index.html"
 showMessage "Updating file attributes."
-sudo find /var/www/html/ -type f -exec chmod 0666 {} \;
+runSudo "find /var/www/html/ -type f -exec chmod 0666 {} \;"
 showMessage "Updating dirs attributes."
-sudo find /var/www/html/ -type d -exec chmod 0777 {} \;
+runSudo "find /var/www/html/ -type d -exec chmod 0777 {} \;"
 
 
 showMessage "Updating config file."
-sudo mv /var/www/html/config.php.sample /var/www/html/config.php>>$LOG_FILE
-sudo sed -i "s/'DB_PASSWORD', ''/'DB_PASSWORD', '$db_root'/" /var/www/html/config.php>>$LOG_FILE
-sudo sed -i "s/'\/var\/www'/'\/var\/www\/html'/" /var/www/html/config.php>>$LOG_FILE
+runSudo "mv /var/www/html/config.php.sample /var/www/html/config.php"
+#replaceString "/var/www/html/config.php" "'DB_PASSWORD', ''" "'DB_PASSWORD', '$db_root'"
+sudo sed -i "s/'DB_PASSWORD', ''/'DB_PASSWORD', '$db_root'/" /var/www/html/config.php
+#replaceString "/var/www/html/config.php" "'\/var\/www'" "'\/var\/www\/html'"
+sudo sed -i "s/'\/var\/www'/'\/var\/www\/html'/" /var/www/html/config.php
 
 # DATABASE
 showMessage "Installing MajorDoMo database."
@@ -50,12 +52,14 @@ mysql -u root -p$db_root db_terminal<./resources/initial_db.sql
 
 # SERVICE
 showMessage "Installing MajorDoMo service."
-sudo cp ./resources/service_script.sh /etc/init.d/majordomo>>$LOG_FILE
-sudo chmod 0755 /etc/init.d/majordomo>>$LOG_FILE
-sudo update-rc.d majordomo defaults>>$LOG_FILE
-sudo service majordomo start>>$LOG_FILE
+runSudo "cp ./resources/service_script.sh /etc/init.d/majordomo"
+runSudo "chmod 0755 /etc/init.d/majordomo"
+runSudo "update-rc.d majordomo defaults"
+runSudo "service majordomo start"
 
-# SUDO (Warning!!!)
+# runSudo "(Warning!!!)
 sudo sh -c 'echo "www-data ALL=(ALL) NOPASSWD: ALL">/etc/sudoers.d/010_www-data-nopasswd'
+
+#todo: logrotate config
 
 showMessage "MajorDoMo installed."

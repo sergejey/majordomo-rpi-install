@@ -2,7 +2,10 @@
 
 showMessage "Installing Redis for caching..."
 
-sudo apt-get install -y redis>>$LOG_FILE
-sudo sed -i "s/\/\/define('USE_REDIS/define('USE_REDIS/g" /var/www/html/config.php>>$LOG_FILE
+runSudo "apt-get install -y redis"
+#replaceString "/var/www/html/config.php" "\/\/define('USE_REDIS" "\/\/\ndefine('USE_REDIS"
+sudo sed -i "s/\/\/define('USE_REDIS/\/\/\ndefine('USE_REDIS/" /var/www/html/config.php
+
+#todo: logrotate config
 
 showMessage "Redis installed."

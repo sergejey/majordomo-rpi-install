@@ -2,12 +2,15 @@
 
 showMessage "Installing Mosquitto MQTT broker..."
 
-sudo apt-get install -y mosquitto>>$LOG_FILE
-sudo apt-get install mosquitto-clients>>$LOG_FILE
-sudo sed -i 's/persistence true/persistence false/' /etc/mosquitto/mosquitto.conf
+runSudo "apt-get install -y mosquitto"
+runSudo "apt-get install -y mosquitto-clients"
+replaceString "/etc/mosquitto/mosquitto.conf" "persistence true" "persistence false"
 if ! grep -q listener "/etc/mosquitto/mosquitto.conf"; then
- sudo sed -i 's/persistence/listener 1883\nallow_anonymous true\npersistence false/' /etc/mosquitto/mosquitto.conf
+ replaceString "/etc/mosquitto/mosquitto.conf" "persistence false" "listener 1883\nallow_anonymous true\npersistence false"
 fi
-sudo service mosquitto restart
+runSudo "service mosquitto restart"
+
+#todo: logrotate config
+#todo: install mqtt module for majordomo
 
 showMessage "Mosquitto installed."

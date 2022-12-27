@@ -2,26 +2,26 @@
 
 showMessage "Installing RHVoice speech engine..."
 
-sudo apt-get install -y mplayer>>$LOG_FILE
-sudo apt-get install -y alsa-base>>$LOG_FILE
-sudo apt-get install -y alsa-utils>>$LOG_FILE
-sudo apt-get install -y alsa-tools>>$LOG_FILE
-sudo apt-get install -y libao4>>$LOG_FILE
-sudo apt-get install -y libao-common>>$LOG_FILE
-sudo apt-get install -y libao-dev>>$LOG_FILE
-sudo apt-get install -y pulseaudio>>$LOG_FILE
+runSudo "apt-get install -y mplayer"
+runSudo "apt-get install -y alsa-base"
+runSudo "apt-get install -y alsa-utils"
+runSudo "apt-get install -y alsa-tools"
+runSudo "apt-get install -y libao4"
+runSudo "apt-get install -y libao-common"
+runSudo "apt-get install -y libao-dev"
+runSudo "apt-get install -y pulseaudio"
 
-sudo usermod -a -G audio www-data>>$LOG_FILE
+runSudo "usermod -a -G audio www-data"
 
-sudo apt-get install -y gcc>>$LOG_FILE
-sudo apt-get install -y g++>>$LOG_FILE
-sudo apt-get install -y pkg-config>>$LOG_FILE
-sudo apt-get install -y scons>>$LOG_FILE
-sudo apt-get install -y python-lxml>>$LOG_FILE
-sudo apt-get install -y libpulse-dev>>$LOG_FILE
-sudo apt-get install -y portaudio19-dev>>$LOG_FILE
-sudo apt-get install -y speech-dispatcher>>$LOG_FILE
-sudo apt-get install -y libspeechd-dev>>$LOG_FILE
+runSudo "apt-get install -y gcc"
+runSudo "apt-get install -y g++"
+runSudo "apt-get install -y pkg-config"
+runSudo "apt-get install -y scons"
+runSudo "apt-get install -y python-lxml"
+runSudo "apt-get install -y libpulse-dev"
+runSudo "apt-get install -y portaudio19-dev"
+runSudo "apt-get install -y speech-dispatcher"
+runSudo "apt-get install -y libspeechd-dev"
 
 sudo tee -a /etc/pulse/daemon.conf << EOF
 high-priority = no
@@ -37,9 +37,9 @@ EOF
 
 git clone --recurse-submodules https://github.com/RHVoice/RHVoice.git
 cd RHVoice
-sudo scons
-sudo scons install
-sudo ldconfig
+runSudo "scons"
+runSudo "scons install"
+runSudo "ldconfig"
 cd ../
 rm -Rf RHVoice/
 

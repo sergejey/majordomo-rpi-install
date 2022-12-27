@@ -1,11 +1,11 @@
 #!/bin/sh
 
 showMessage "Updating OS."
-sudo apt-get update>>$LOG_FILE
-sudo apt-get upgrade -y>>$LOG_FILE
+runSudo "apt-get update"
+runSudo "apt-get upgrade -y"
 
-sudo apt-get install -y mc>>$LOG_FILE
-sudo systemctl enable ssh>>$LOG_FILE
-sudo systemctl start ssh>>$LOG_FILE
+runSudo "apt-get install -y mc mpd mplayer"
+runSudo "systemctl enable ssh"
+runSudo "systemctl start ssh"
 
 #todo gethostname (hostname -i)

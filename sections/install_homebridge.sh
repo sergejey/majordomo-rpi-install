@@ -2,18 +2,20 @@
 
 showMessage "Installing Homebridge service..."
 
-sudo apt-get install -y nodejs npm>>$LOG_FILE
-sudo apt-get install -y libavahi-compat-libdnssd-dev>>$LOG_FILE
-sudo npm -g i homebridge --unsafe-perm>>$LOG_FILE
-sudo npm install -g homebridge-mqtt>>$LOG_FILE
-sudo npm install homebridge-camera-ffmpeg>>$LOG_FILE
+runSudo "apt-get install -y nodejs npm"
+runSudo "apt-get install -y libavahi-compat-libdnssd-dev"
+runSudo "npm -g i homebridge --unsafe-perm"
+runSudo "npm install -g homebridge-mqtt"
+runSudo "npm install homebridge-camera-ffmpeg"
 
 mkdir ~/.homebridge/>>$LOG_FILE
 cp ./resources/homebridge_config.json ~/.homebridge/config.json>>$LOG_FILE
 
-sudo cp ./resources/homebridge_service.sh /etc/init.d/homebridge>>$LOG_FILE
-sudo chmod 0755 /etc/init.d/homebridge>>$LOG_FILE
-sudo update-rc.d homebridge defaults>>$LOG_FILE
-sudo service homebridge start>>$LOG_FILE
+runSudo "cp ./resources/homebridge_service.sh /etc/init.d/homebridge"
+runSudo "chmod 0755 /etc/init.d/homebridge"
+runSudo "update-rc.d homebridge defaults"
+runSudo "service homebridge start"
+
+#todo: logrotate config https://github.com/homebridge/homebridge/issues/1117#issuecomment-277577013
 
 showMessage "Homebridge installed."

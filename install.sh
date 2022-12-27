@@ -1,9 +1,9 @@
 #!/bin/sh
 
 cd ~
-#rm -Rf ./majordomo-rpi-install
-#sudo apt-get install -y git
-#git clone https://github.com/sergejey/majordomo-rpi-install.git
+rm -Rf ./majordomo-rpi-install
+sudo apt-get install -y git
+git clone https://github.com/sergejey/majordomo-rpi-install.git
 cd majordomo-rpi-install
 clear
 
@@ -66,5 +66,5 @@ showMessage "Log file for details: $LOG_FILE"
 read -p "Do you want to reboot now (y/n) [n]: " rebootnow
 rebootnow=${rebootnow:-n}
 if [ $rebootnow == "y" ]; then
- sudo shutdown -r now
+ runSudo "shutdown -r now"
 fi

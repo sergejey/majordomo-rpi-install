@@ -1,24 +1,21 @@
 #!/bin/sh
 
 showMessage "Installing Apache web server..."
-sudo apt-get install -y apache2>>$LOG_FILE
-sudo apt-get install -y apache2-bin>>$LOG_FILE
-sudo apt-get install -y apache2-data>>$LOG_FILE
-sudo apt-get install -y apache2-utils>>$LOG_FILE
+runSudo "apt-get install -y apache2"
+runSudo "apt-get install -y apache2-bin"
+runSudo "apt-get install -y apache2-data"
+runSudo "apt-get install -y apache2-utils"
 
-sudo a2enmod rewrite>>$LOG_FILE
+runSudo "a2enmod rewrite"
 
 # Allow .htaccess for all folders
-sudo sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
+replaceString "/etc/apache2/apache2.conf" "AllowOverride None" "AllowOverride All"
 
-# Disable access log
-sudo sed -i 's/CustomLog/#CustomLog/g' /etc/apache2/sites-available/000-default.conf
-
-# todo: disable access log to save card
+# Disable access log (to save card)
+replaceString "/etc/apache2/sites-available/000-default.conf" "CustomLog" "#CustomLog"
+replaceString "/etc/apache2/conf-available/other-vhosts-access-log.conf" "CustomLog" "#CustomLog"
 
 # Fixing ownership
-sudo chown -Rf www-data:www-data /var/www
-
-sudo service apache2 restart
-
+runSudo "chown -Rf www-data:www-data /var/www"
+runSudo "service apache2 restart"
 showMessage "Apache installed."
