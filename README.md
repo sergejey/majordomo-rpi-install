@@ -17,3 +17,12 @@ Features:
 * Install RHVoice TTS engine (optional)
 * Install Zigbee2MQTT service (optional)
 * Install Redis for caching (optional)
+
+To-Do:
+* Option to use nginx instead of apache
+* In-memory database option to reduce writing to SD-card
+* ZWave2MQTT
+* KNX2MQTT
+* any other ideas? :)
+
+Big thanks to **prmres** for [original idea](https://mjdm.ru/forum/viewtopic.php?p=92843#p92843)!
