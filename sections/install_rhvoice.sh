@@ -43,6 +43,6 @@ runSudo "ldconfig"
 cd ../
 rm -Rf RHVoice/
 
-#todo: install rhvoice module for majordomo
+installModule "rhvoice"
 
 showMessage "RHVoice installation complete."

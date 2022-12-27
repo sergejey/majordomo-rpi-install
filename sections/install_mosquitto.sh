@@ -11,6 +11,6 @@ fi
 runSudo "service mosquitto restart"
 
 #todo: logrotate config
-#todo: install mqtt module for majordomo
+installModule "mqtt"
 
 showMessage "Mosquitto installed."

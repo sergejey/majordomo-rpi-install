@@ -9,6 +9,11 @@ function showMessage {
   echo "" >> $LOG_FILE
 }
 
+function installModule {
+  showMessage "Installing module $1"
+  wget -q http://localhost/modules/market/update_iframe.php?mode2=install\&name=$1
+}
+
 function runSudo {
   showMessage "Running: $1"
   sudo sh -c "$1 >>$LOG_FILE"

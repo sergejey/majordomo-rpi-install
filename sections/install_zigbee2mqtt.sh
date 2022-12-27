@@ -18,7 +18,7 @@ runSudo "cp ./resources/zigbee2mqtt.service /etc/systemd/system/zigbee2mqtt.serv
 runSudo "systemctl enable zigbee2mqtt.service"
 runSudo "service zigbee2mqtt start"
 
-# todo install zigbeedev module for majordomo
+installModule "zigbeedev"
 # todo logrotate config
 
 showMessage "Zigbee2MQTT installed."
