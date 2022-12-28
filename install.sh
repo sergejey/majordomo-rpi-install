@@ -5,7 +5,7 @@ rm -Rf ./majordomo-rpi-install
 sudo apt-get install -y git
 git clone https://github.com/sergejey/majordomo-rpi-install.git
 
-if [[ "$0" == *"curl"* ]]; then
+if [ "$0" == *"curl"* ]; then
   echo "Running from curl. Restarting..."
   exit
 fi
