@@ -17,5 +17,7 @@ runSudo "update-rc.d homebridge defaults"
 runSudo "service homebridge start"
 
 #todo: logrotate config https://github.com/homebridge/homebridge/issues/1117#issuecomment-277577013
+# Log rotate
+runSudo "cp ./resources/logrotate_homebridge /etc/logrotate.d/homebridge"
 
 showMessage "Homebridge installed."

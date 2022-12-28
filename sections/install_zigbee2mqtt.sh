@@ -7,9 +7,9 @@ runSudo "apt-get install -y yarn"
 runSudo "git clone https://github.com/Koenkk/zigbee2mqtt.git /opt/zigbee2mqtt"
 runSudo "chown -R pi:pi /opt/zigbee2mqtt"
 
-sudo echo "\nfrontend:">>/opt/zigbee2mqtt/data/configuration.yaml
-sudo echo "\n  port: 8080">>/opt/zigbee2mqtt/data/configuration.yaml
-sudo echo "\n  host: 0.0.0.0">>/opt/zigbee2mqtt/data/configuration.yaml
+sudo echo "frontend:">>/opt/zigbee2mqtt/data/configuration.yaml
+sudo echo "  port: 8080">>/opt/zigbee2mqtt/data/configuration.yaml
+sudo echo "  host: 0.0.0.0">>/opt/zigbee2mqtt/data/configuration.yaml
 cd /opt/zigbee2mqtt/
 runSudo "npm ci"
 

@@ -1,0 +1,9 @@
+/var/log/homebridge.log /var/log/homebridge.err {
+        daily
+        missingok
+        rotate 10
+        compress
+        delaycompress
+        notifempty
+        nocreate
+}

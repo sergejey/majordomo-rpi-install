@@ -10,7 +10,6 @@ if ! grep -q listener "/etc/mosquitto/mosquitto.conf"; then
 fi
 runSudo "service mosquitto restart"
 
-#todo: logrotate config
 installModule "mqtt"
 
 showMessage "Mosquitto installed."

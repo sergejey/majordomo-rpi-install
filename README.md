@@ -12,6 +12,7 @@ Features:
 * Install MariaDB (password config)
 * Install phpMyAdmin  
 * Install __MajorDomo__ (master or alpha branch)
+* In-memory database option to reduce writing to SD-card
 * Install Mosquitto MQTT broker
 * Install HomeBridge service (optional)
 * Install RHVoice TTS engine (optional)
@@ -20,7 +21,6 @@ Features:
 
 To-Do:
 * Option to use nginx instead of apache
-* In-memory database option to reduce writing to SD-card
 * ZWave2MQTT
 * KNX2MQTT
 * any other ideas? :)

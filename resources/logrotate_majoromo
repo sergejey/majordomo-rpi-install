@@ -1,0 +1,9 @@
+/var/log/majordomo.log /var/log/majordomo.err {
+        daily
+        missingok
+        rotate 10
+        compress
+        delaycompress
+        notifempty
+        nocreate
+}

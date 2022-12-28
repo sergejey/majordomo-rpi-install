@@ -64,6 +64,7 @@ sudo sh -c 'echo "www-data ALL=(ALL) NOPASSWD: ALL">/etc/sudoers.d/010_www-data-
 showMessage "Updating MajorDoMo modules..."
 wget -q http://localhost/modules/market/update_iframe.php?mode2=update_all
 
-#todo: logrotate config
+# Log rotate
+runSudo "cp ./resources/logrotate_majordomo /etc/logrotate.d/majordomo"
 
 showMessage "MajorDoMo installed."

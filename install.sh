@@ -10,11 +10,6 @@ clear
 echo "Welcome to MajorDoMo installation script for Raspberry Pi!"
 echo "More details at https://github.com/sergejey/majordomo-rpi-install"
 echo ""
-read -p "Ok, are you ready to start? [y]: " startReady
-startReady=${startReady:-y}
-if [ $startReady != "y" ]; then
- exit
-fi
 
 
 source "./libraries/general.sh"
@@ -30,6 +25,12 @@ showMessage "Starting installation script."
 
 # Ask for details
 source "./sections/questions.sh"
+echo ""
+read -p "Ok, are you ready to start? [y]: " startReady
+startReady=${startReady:-y}
+if [ $startReady != "y" ]; then
+ exit
+fi
 
 # Common preparation
 
@@ -39,6 +40,9 @@ source "./sections/install_php.sh"
 source "./sections/install_db.sh"
 source "./sections/install_phpmyadmin.sh"
 source "./sections/install_majordomo.sh"
+if [ $db_to_memory == "y" ]; then
+  source "./sections/move_db_to_memory.sh"
+fi
 source "./sections/install_mosquitto.sh"
 if [ $install_homebridge == "y" ]; then
  source "./sections/install_homebridge.sh"
