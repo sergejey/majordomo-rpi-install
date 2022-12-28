@@ -35,8 +35,10 @@ runSudo "service mysql start"
 runSudo "cp /var/www/html/scripts/periodical_db_save.php /var/www/html/scripts/cycle_periodical_db_save.php"
 
 runSudo "mkdir /var/www/html/database_backup"
-runSudo "chmod 0755 /var/www/html/database_backup"
+runSudo "chmod 0777 /var/www/html/database_backup"
+runSudo "chown www-data:www-data /var/www/html/database_backup"
 runSudoNoLog "/usr/bin/mysqldump -h localhost --user=root --password=$db_root --no-create-db --add-drop-table db_terminal>/var/www/html/database_backup/db.sql"
+runSudo "chown www-data:www-data /var/www/html/database_backup/db.sql"
 runSudo "chmod 0666 /var/www/html/database_backup/db.sql"
 
 runSudo "service majordomo start"
