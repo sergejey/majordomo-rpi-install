@@ -4,6 +4,11 @@ cd ~
 rm -Rf ./majordomo-rpi-install
 sudo apt-get install -y git
 git clone https://github.com/sergejey/majordomo-rpi-install.git
+
+if [[ $0 == *curl* ]];
+ exit
+fi
+
 cd majordomo-rpi-install
 clear
 
