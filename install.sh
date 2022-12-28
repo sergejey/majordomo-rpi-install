@@ -11,7 +11,10 @@ echo "Welcome to MajorDoMo installation script for Raspberry Pi!"
 echo "More details at https://github.com/sergejey/majordomo-rpi-install"
 echo ""
 read -p "Ok, are you ready to start? [y]: " startReady
-
+startReady=${startReady:-y}
+if [ $startReady != "y" ]; then
+ exit
+fi
 
 
 source "./libraries/general.sh"
@@ -27,10 +30,7 @@ showMessage "Starting installation script."
 
 # Ask for details
 source "./sections/questions.sh"
-startReady=${startReady:-y}
-if [ $startReady != "y" ]; then
- exit
-fi
+
 
 # Common preparation
 
