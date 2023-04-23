@@ -11,7 +11,7 @@ sudo cp ./resources/boot_config.txt /boot/config.txt>>$LOG_FILE
 
 # clock
 sudo systemctl disable hciuart
-sudo apt-get purge fake-hwclock
+sudo apt-get purge -y fake-hwclock
 # /etc/modules
 sudo sed -i "/^i2c-dev/d" /etc/modules
 sudo echo "i2c-dev">>/etc/modules
