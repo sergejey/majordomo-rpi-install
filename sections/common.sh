@@ -4,7 +4,7 @@ showMessage "Updating OS."
 runSudo "apt-get update"
 runSudo "apt-get upgrade -y"
 
-runSudo "apt-get install -y mc mpd mplayer"
+runSudo "apt-get install -y mc mpd mplayer omxplayer"
 runSudo "systemctl enable ssh"
 runSudo "systemctl start ssh"
 

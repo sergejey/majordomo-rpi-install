@@ -1,9 +1,9 @@
 #!/bin/sh
 
 showMessage "Installing Zigbee2MQTT..."
-runSudo "curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -"
-runSudo "apt-get install -y nodejs git make g++ gcc"
-runSudo " mkdir /opt/zigbee2mqtt"
+sudo "curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -"
+runSudo "apt-get install -y nodejs git make g++ gcc npm"
+runSudo "mkdir /opt/zigbee2mqtt"
 
 runSudo "git clone --depth 1 https://github.com/Koenkk/zigbee2mqtt.git /opt/zigbee2mqtt"
 runSudo "chown -R pi:pi /opt/zigbee2mqtt"
@@ -11,6 +11,12 @@ runSudo "chown -R pi:pi /opt/zigbee2mqtt"
 sudo echo "frontend:">>/opt/zigbee2mqtt/data/configuration.yaml
 sudo echo "  port: 8080">>/opt/zigbee2mqtt/data/configuration.yaml
 sudo echo "  host: 0.0.0.0">>/opt/zigbee2mqtt/data/configuration.yaml
+
+if [ $set_install_ablog == "y" ]; then
+ # replacing default value for ablog rpi module
+ replaceString "/opt/zigbee2mqtt/data/configuration.yaml" "port: \/dev\/ttyACM0" "port: \/dev\/ttyAMA2"
+fi
+
 cd /opt/zigbee2mqtt/
 runSudo "npm ci"
 

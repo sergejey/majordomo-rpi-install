@@ -37,10 +37,18 @@ showMessage "Starting installation script."
 # Ask for details
 source "./sections/questions.sh"
 
-
 # Common preparation
-
 source "./sections/common.sh"
+
+if [ $set_install_ablog == "y" ]; then
+  source "./sections/install_ablog_rpi4.sh"
+fi
+if [ $set_static_ip == "y" ]; then
+ source "./sections/install_static_ip.sh"
+fi
+if [ $set_disable_updates == "y" ]; then
+ source "./sections/install_disable_updates.sh"
+fi
 source "./sections/install_apache.sh"
 source "./sections/install_php.sh"
 source "./sections/install_db.sh"
@@ -61,6 +69,12 @@ if [ $install_redis == "y" ]; then
 fi
 if [ $install_z2m == "y" ]; then
  source "./sections/install_zigbee2mqtt.sh"
+fi
+if [ $set_static_ip == "y" ]; then
+ source "./sections/install_static_ip.sh"
+fi
+if [ $set_disable_updates == "y" ]; then
+ source "./sections/install_disable_updates.sh"
 fi
 #todo
 #if [ $install_zwave2mqtt == "y" ]; then

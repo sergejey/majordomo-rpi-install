@@ -60,6 +60,9 @@ runSudo "service majordomo start"
 # runSudo "(Warning!!!)
 sudo sh -c 'echo "www-data ALL=(ALL) NOPASSWD: ALL">/etc/sudoers.d/010_www-data-nopasswd'
 
+# Allow audio for www-data
+sudo usermod -aG audio www-data
+
 # UPDATE ALL MODULES
 showMessage "Updating MajorDoMo modules..."
 wget -q http://localhost/modules/market/update_iframe.php?mode2=update_all

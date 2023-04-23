@@ -1,0 +1,11 @@
+[all]
+dtoverlay=disable-wifi
+dtoverlay=disable-bt
+dtoverlay=dwc2,dr_mode=host
+dtparam=i2c_arm=on
+dtoverlay=i2c1,pins_44_45
+dtoverlay=gpio-shutdown
+dtoverlay=i2c-rtc,pcf85063a,i2c1
+dtoverlay=uart4
+dtoverlay=uart5
+arm_64bit=1
