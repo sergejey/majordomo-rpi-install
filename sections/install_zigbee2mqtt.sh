@@ -2,7 +2,6 @@
 
 showMessage "Installing Zigbee2MQTT..."
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-runSudo "apt-get install -y git"
 runSudo "apt-get install -y nodejs"
 runSudo "apt-get install -y make"
 runSudo "apt-get install -y g++"

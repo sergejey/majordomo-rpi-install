@@ -1,9 +1,15 @@
 #!/bin/sh
 
-cd ~
-rm -Rf ./majordomo-rpi-install
+destPath=/home/pi
+devRun=n
+
+cd $destPath
+
 sudo apt-get install -y git
-git clone https://github.com/sergejey/majordomo-rpi-install.git
+if [ $devRun != "y" ]; then
+ rm -Rf ./majordomo-rpi-install
+ git clone https://github.com/sergejey/majordomo-rpi-install.git
+fi
 
 if [ "$0" == *"curl"* ]; then
   echo "Running from curl. Restarting..."
@@ -58,9 +64,6 @@ if [ $db_to_memory == "y" ]; then
   source "./sections/move_db_to_memory.sh"
 fi
 source "./sections/install_mosquitto.sh"
-if [ $install_homebridge == "y" ]; then
- source "./sections/install_homebridge.sh"
-fi
 if [ $install_rhvoice == "y" ]; then
  source "./sections/install_rhvoice.sh"
 fi
@@ -69,6 +72,9 @@ if [ $install_redis == "y" ]; then
 fi
 if [ $install_z2m == "y" ]; then
  source "./sections/install_zigbee2mqtt.sh"
+fi
+if [ $install_homebridge == "y" ]; then
+ source "./sections/install_homebridge.sh"
 fi
 if [ $set_static_ip == "y" ]; then
  source "./sections/install_static_ip.sh"
