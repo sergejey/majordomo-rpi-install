@@ -2,6 +2,10 @@
 
 Installation script to setup __MajorDoMo__ home automation platform on __Rasbperry Pi OS (bullseye)__.
 
+Prerequisites
+* Raspbian OS image should be installed
+* SSH enabled (in case of headless setup see instructions below)
+
 Usage:
 ```
 curl -s https://raw.githubusercontent.com/sergejey/majordomo-rpi-install/main/install.sh | bash && bash ~/majordomo-rpi-install/install.sh
@@ -33,3 +37,13 @@ To-Do:
 * any other ideas? :)
 
 Big thanks to **prmres** for [original idea](https://mjdm.ru/forum/viewtopic.php?p=92843#p92843)!
+
+## Headless setup
+
+1. Download latest [Raspian Lite](https://downloads.raspberrypi.org/raspios_lite_armhf/images/) image
+2. Burn image to SSD card (or eMMC disk) with [Balena Etcher](https://www.balena.io/etcher/) or [Win32DiskImager](https://sourceforge.net/projects/win32diskimager/)
+3. Create empty file called _ssh_ in the root of boot disk
+4. Create _userconf.txt_ file in the same folder with following content:
+>pi:$6$ghKLjE2C3qTJZtde$AjJ9HXBpawoN/iqCTU8KBtaOngUx5GLY0qkEJP0F7VKTLL5fkX7q9K4oSiZYVFJBc09NocagToQzbnNz/eph71
+5. Reboot Raspberry Pi and connect to it using SSH protocol and following username/password:  
+   _pi_ / _raspberry_
