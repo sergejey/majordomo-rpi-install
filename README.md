@@ -7,6 +7,10 @@ Usage:
 curl -s https://raw.githubusercontent.com/sergejey/majordomo-rpi-install/main/install.sh | bash && bash ~/majordomo-rpi-install/install.sh
 ```
 
+Sample run:
+
+![image](https://user-images.githubusercontent.com/412987/234350604-646cfc11-2799-43f8-abe8-3104c9a79716.png)
+
 Features:
 * Basic preparations (distr update)
 * Static IP address set (optional)
