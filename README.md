@@ -30,6 +30,11 @@ Features:
 * Install Zigbee2MQTT service (optional)
 * Install Redis for caching (optional)
 
+Post-installation:
+* Reboot the system (recommended)
+* MajorDoMo is available by the url ``http://IP_address/`` (open it to finish setup)
+* Zigbee2MQTT front-end is available by the url ``http://IP_address:8080/`` (if installed)
+
 To-Do:
 * Option to use nginx instead of apache
 * ZWave2MQTT
