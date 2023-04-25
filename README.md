@@ -6,8 +6,11 @@ Usage:
 ```
 curl -s https://raw.githubusercontent.com/sergejey/majordomo-rpi-install/main/install.sh | bash && bash ~/majordomo-rpi-install/install.sh
 ```
+
 Features:
-* Basic preparations
+* Basic preparations (distr update)
+* Static IP address set (optional)
+* Special block for [ab-log's RPi4-RTC-PoE](https://ab-log.ru/forum/viewtopic.php?f=1&t=1895) mini-server setup (optional)  
 * Install Apache web server
 * Install MariaDB (password config)
 * Install phpMyAdmin  
