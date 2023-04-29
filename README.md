@@ -5,6 +5,8 @@ Installation script to setup __MajorDoMo__ home automation platform on __Rasbper
 Prerequisites
 * Raspbian OS image should be installed
 * SSH enabled (in case of headless setup see instructions below)
+* It is recommended to do an update before running installation
+  (_sudo apt update && sudo apt full-upgrade -y && sudo reboot_)
 
 Usage:
 ```

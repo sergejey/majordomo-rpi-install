@@ -8,4 +8,5 @@ dtoverlay=gpio-shutdown
 dtoverlay=i2c-rtc,pcf85063a,i2c1
 dtoverlay=uart4
 dtoverlay=uart5
+dtparam=act_led_trigger=timer
 arm_64bit=1
