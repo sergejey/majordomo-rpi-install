@@ -1,7 +1,5 @@
 #!/bin/sh
 
-LOG_FILE="./log.txt"
-
 function showMessage {
   echo "$1"
   echo "" >> $LOG_FILE

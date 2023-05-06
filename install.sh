@@ -1,7 +1,9 @@
 #!/bin/sh
 
-destPath=/home/pi
+destPath=~
 devRun=n
+
+LOG_FILE="./log.txt"
 
 cd $destPath
 
@@ -16,7 +18,7 @@ if [ "$0" == *"curl"* ]; then
   exit
 fi
 
-cd majordomo-rpi-install
+cd $destPath/majordomo-rpi-install
 clear
 
 echo "Welcome to MajorDoMo installation script for Raspberry Pi!"

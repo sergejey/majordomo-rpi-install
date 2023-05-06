@@ -2,10 +2,10 @@
 
 showMessage "Installing MariaDB..."
 
-runSudo "apt-get install -y dbconfig-mysql"
+runSudo "apt-get install -y mariadb-server"
 runSudo "apt-get install -y mariadb-common"
 runSudo "apt-get install -y mariadb-client"
-runSudo "apt-get install -y mariadb-server"
+runSudo "apt-get install -y dbconfig-mysql"
 
 showMessage "MariaDB installed."
 

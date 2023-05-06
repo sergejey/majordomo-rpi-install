@@ -1,6 +1,7 @@
 #!/bin/sh
 
 showMessage "Installing PHP 7.4..."
+runSudo "apt-get install -y libapache2-mod-php7.4"
 runSudo "apt-get install -y php7.4"
 runSudo "apt-get install -y php7.4-mysql"
 runSudo "apt-get install -y php7.4-common"
@@ -18,10 +19,8 @@ runSudo "apt-get install -y php7.4-bcmath"
 runSudo "apt-get install -y php7.4-zip"
 runSudo "apt-get install -y php7.4-redis"
 
-if [ ! -f /var/www/html/php.php ]; then
- runSudo 'echo "<?php phpinfo(); ?>">/var/www/html/php.php'
- runSudo 'chown www-data:www-data /var/www/html/php.php'
-fi
+runSudo 'echo "<?php phpinfo(); ?>">/var/www/html/php.php'
+runSudo 'chown www-data:www-data /var/www/html/php.php'
 
 # Update php.ini config
 runSudo "sed -i '/post_max_size/s/8/200/' /etc/php/7.4/apache2/php.ini"
