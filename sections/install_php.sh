@@ -1,4 +1,10 @@
-#!/bin/sh
+#!/bin/bash
+
+if checkOS "Ubuntu 22"; then
+ sudo apt install software-properties-common
+ sudo add-apt-repository -y ppa:ondrej/php
+ sudo apt update -y
+fi
 
 showMessage "Installing PHP 7.4..."
 runSudo "apt-get install -y libapache2-mod-php7.4"

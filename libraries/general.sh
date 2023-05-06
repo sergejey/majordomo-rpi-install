@@ -1,4 +1,15 @@
-#!/bin/sh
+#!/bin/bash
+
+osVersion=$(cat /etc/issue.net)
+echo "OS: $osVersion" >> $LOG_FILE
+
+function checkOS {
+ if [[ "$osVersion" == *"$1"* ]]; then
+   return 0
+ else
+  return 1
+ fi
+}
 
 function showMessage {
   echo "$1"

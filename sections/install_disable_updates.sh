@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 showMessage "Disabling daily updates..."
 sudo systemctl stop apt-daily.timer

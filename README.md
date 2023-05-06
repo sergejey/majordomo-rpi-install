@@ -1,9 +1,9 @@
 # majordomo-rpi-install
 
-Installation script to setup __MajorDoMo__ home automation platform on __Rasbperry Pi OS (bullseye)__.
+Installation script to setup __MajorDoMo__ home automation platform on __Rasbperry Pi OS (bullseye)__ [also tested with servers running Ubuntu 20/22].
 
 Prerequisites
-* Raspbian OS image should be installed
+* Raspbian (or Ubuntu) OS image should be installed
 * SSH enabled (in case of headless setup see instructions below)
 * It is recommended to do an update before running installation
   (_sudo apt update && sudo apt full-upgrade -y && sudo reboot_)

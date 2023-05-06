@@ -5,7 +5,7 @@ devRun=n
 
 LOG_FILE="./log.txt"
 
-cd $destPath
+cd $destPath || exit
 
 sudo apt-get install -y git
 if [ $devRun != "y" ]; then

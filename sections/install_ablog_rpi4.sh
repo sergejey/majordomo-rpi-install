@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # https://ab-log.ru/forum/viewtopic.php?f=1&t=1895
 showMessage "Making changes related to AB-LOG RPi4POE module"

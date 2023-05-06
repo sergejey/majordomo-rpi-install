@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 read -p "Do you have ab-log RPI4Poe module [n]: " set_install_ablog
 set_install_ablog=${set_install_ablog:-n}
 
@@ -8,8 +9,14 @@ db_root=${db_root:-rootpsw}
 read -p "Install MajorDoMo MASTER or ALPHA branch (m/a) [m]: " majordomo_branch
 majordomo_branch=${majordomo_branch:-m}
 
-read -p "Do you want to have DB in memory storage [y]: " db_to_memory
-db_to_memory=${db_to_memory:-y}
+if checkOS "Ubuntu"; then
+  db_to_memory_default=n
+else
+  db_to_memory_default=y
+fi
+
+read -p "Do you want to have DB in memory storage [$db_to_memory_default]: " db_to_memory
+db_to_memory=${db_to_memory:-$db_to_memory_default}
 
 if [ $db_to_memory == "y" ]; then
  read -p "How much memory to reserve for DB, Mb [150]: " memory_storage_size
@@ -28,8 +35,13 @@ install_redis=${install_redis:-y}
 read -p "Install Zigbee2MQTT (y/n) [n]: " install_z2m
 install_z2m=${install_z2m:-n}
 
-read -p "Do you want to set static IP address [y]: " set_static_ip
-set_static_ip=${set_static_ip:-y}
+if checkOS "Ubuntu"; then
+  set_static_ip_default=n
+else
+  set_static_ip_default=y
+fi
+read -p "Do you want to set static IP address [$set_static_ip_default]: " set_static_ip
+set_static_ip=${set_static_ip:-$set_static_ip_default}
 
 if [ $set_static_ip == "y" ]; then
  read -p "IP address to use [$IP_ADDRESS]: " static_ip_address

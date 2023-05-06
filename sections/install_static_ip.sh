@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 showMessage "Setting static IP (${static_ip_address})..."
 

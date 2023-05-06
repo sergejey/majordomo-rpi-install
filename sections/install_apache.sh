@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 showMessage "Installing Apache web server..."
 runSudo "apt-get install -y apache2"
