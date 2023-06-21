@@ -11,6 +11,14 @@ function checkOS {
  fi
 }
 
+function isVM {
+ if lspci | grep -q "VirtualBox"; then
+  return 1
+ else
+  return 0
+ fi
+}
+
 function showMessage {
   echo "$1"
   echo "" >> $LOG_FILE

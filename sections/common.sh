@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if isVM; then
+  showMessage "Running clock sync for VM."
+  sudo hwclock --hctosys
+fi
+
 sudo apt-get -y remove needrestart
 
 showMessage "Updating OS."
