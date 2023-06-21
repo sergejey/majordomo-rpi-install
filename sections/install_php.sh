@@ -1,19 +1,21 @@
 #!/bin/bash
 
 showMessage "Installing PHP..."
-if checkOS "Ubuntu 22"; then
- showMessage "Ubuntu 22, trying to use another repository for PHP."
+if checkOS "Ubuntu 22" && [[ $majordomo_branch == "m" ]]; then
+ showMessage "Ubuntu 22, trying to use alternative repository for PHP 7.4"
  runSudo "apt-get install -y software-properties-common"
  runSudo "add-apt-repository -y ppa:ondrej/php"
  runSudo "apt update -y"
  runSudo "apt-get install -y php7.4"
 else
+ showMessage "Using default PHP version."
  runSudo "apt-get install -y php"
 fi
 
 PHPVERSION=$(ls -Art1 /etc/php | tail -n 1)
 
 showMessage "PHP version installed: $PHPVERSION"
+
 runSudo "apt-get install -y libapache2-mod-php$PHPVERSION"
 runSudo "apt-get install -y php$PHPVERSION-mysql"
 runSudo "apt-get install -y php$PHPVERSION-common"

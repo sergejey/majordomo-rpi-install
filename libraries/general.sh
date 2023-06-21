@@ -11,19 +11,19 @@ function checkOS {
  fi
 }
 
-function isVM {
- if lspci | grep -q "VirtualBox"; then
-  return 1
- else
-  return 0
- fi
-}
-
 function showMessage {
   echo "$1"
   echo "" >> $LOG_FILE
   echo "$1" >> $LOG_FILE
   echo "" >> $LOG_FILE
+}
+
+function isVM {
+ if lspci | grep -q "VirtualBox"; then
+  return 0
+ else
+  return 1
+ fi
 }
 
 function installModule {

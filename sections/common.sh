@@ -9,8 +9,8 @@ sudo apt-get -y remove needrestart
 
 showMessage "Updating OS."
 
-runSudo "apt-get update"
-runSudo "apt-get upgrade -y"
+#runSudo "apt-get update"
+#runSudo "apt-get upgrade -y"
 
 runSudo "apt-get install -y mc mpd mplayer unzip ntp"
 runSudo "systemctl enable ssh"
