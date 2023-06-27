@@ -25,6 +25,7 @@ Features:
 * Install MariaDB (password config)
 * Install phpMyAdmin  
 * Install __MajorDomo__ (master or alpha branch)
+* Restore database from CONNECT (cloud) backup (optional)  
 * In-memory database option to reduce writing to SD-card
 * Install Mosquitto MQTT broker
 * Install HomeBridge service (optional)
