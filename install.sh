@@ -61,6 +61,9 @@ source "./sections/install_apache.sh"
 source "./sections/install_php.sh"
 source "./sections/install_db.sh"
 source "./sections/install_phpmyadmin.sh"
+if [ $backup_restore == "y" ]; then
+ source "./sections/install_backup.sh"
+fi
 source "./sections/install_majordomo.sh"
 if [ $db_to_memory == "y" ]; then
   source "./sections/move_db_to_memory.sh"

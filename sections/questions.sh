@@ -9,6 +9,13 @@ db_root=${db_root:-rootpsw}
 read -p "Install MajorDoMo MASTER or ALPHA branch (m/a) [m]: " majordomo_branch
 majordomo_branch=${majordomo_branch:-m}
 
+read -p "Do you want to restore system from CONNECT backup [n]: " backup_restore
+backup_restore=${backup_restore:-n}
+if [ $backup_restore == "y" ]; then
+ read -p "Please enter CONNECT username: " backup_username
+ read -p "Please enter backup code: " backup_code
+fi
+
 if checkOS "Ubuntu"; then
   db_to_memory_default=n
 else
