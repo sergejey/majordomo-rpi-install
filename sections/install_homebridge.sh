@@ -20,4 +20,6 @@ runSudo "service homebridge start"
 # Log rotate
 runSudo "cp ./resources/logrotate_homebridge /etc/logrotate.d/homebridge"
 
+installModule "homekit"
+
 showMessage "Homebridge installed."
