@@ -18,7 +18,7 @@ sudo echo "  port: 8080">>/opt/zigbee2mqtt/data/configuration.yaml
 sudo echo "  host: 0.0.0.0">>/opt/zigbee2mqtt/data/configuration.yaml
 
 replaceString "/opt/zigbee2mqtt/data/configuration.yaml" "homeassistant: false" "homeassistant: true"
-replaceString "/opt/zigbee2mqtt/data/configuration.yaml" "permitjoin: true" "permitjoin: false"
+replaceString "/opt/zigbee2mqtt/data/configuration.yaml" "permit_join: true" "permit_join: false"
 
 if [ $set_install_ablog == "y" ]; then
  # replacing default value for ablog rpi module
