@@ -43,6 +43,14 @@ read -p "Install Zigbee2MQTT (y/n) [n]: " install_z2m
 install_z2m=${install_z2m:-n}
 
 if checkOS "Ubuntu"; then
+  echo ""
+else
+  read -p "Set hostname to [majordomo]: " dns_hostname
+  dns_hostname=${dns_hostname:-majordomo}
+fi
+
+
+if checkOS "Ubuntu"; then
   set_static_ip_default=n
 else
   set_static_ip_default=y
