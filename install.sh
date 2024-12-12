@@ -52,12 +52,6 @@ if [ $set_install_ablog == "y" ]; then
   source "./sections/install_ablog_rpi4.sh"
 fi
 
-if checkOS "Ubuntu"; then
-  showMessage "Skipping hostname update."
-else
- source "./sections/install_hostname.sh"
-fi
-
 if [ $set_static_ip == "y" ]; then
  source "./sections/install_static_ip.sh"
 fi
@@ -102,6 +96,12 @@ fi
 #if [ $install_knx2mqtt == "y" ]; then
 # source "./sections/install_knx2mqtt.sh"
 #fi
+
+if checkOS "Ubuntu"; then
+  showMessage "Skipping hostname update."
+else
+ source "./sections/install_hostname.sh"
+fi
 
 showMessage "Installation complete."
 showMessage "Log file for details: $LOG_FILE"
