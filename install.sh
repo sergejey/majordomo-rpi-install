@@ -48,6 +48,8 @@ source "./sections/questions.sh"
 # Common preparation
 source "./sections/common.sh"
 
+sudo killall apt apt-get
+
 if [ $set_install_ablog == "y" ]; then
   source "./sections/install_ablog_rpi4.sh"
 fi
