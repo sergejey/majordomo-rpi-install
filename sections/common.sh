@@ -13,6 +13,7 @@ runSudo "apt-get update"
 runSudo "apt-get upgrade -y"
 
 runSudo "apt-get install -y mc mpd mplayer unzip ntp python3 python3-pip pkg-config ffmpeg"
+runSudo "python3 -m pip config set global.break-system-packages true"
 runSudo "pip install mysqlclient"
 runSudo "pip install timer"
 runSudo "systemctl enable ssh"
