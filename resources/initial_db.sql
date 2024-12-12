@@ -4353,7 +4353,8 @@ INSERT INTO `project_modules` (`ID`, `NAME`, `TITLE`, `CATEGORY`, `PARENT_NAME`,
 (121, 'devices', 'Простые устройства', '<#LANG_SECTION_DEVICES#>', '', NULL, 0, 0, '2022-12-27 17:45:52'),
 (128, 'shoutcast', 'SHOUTCast', '<#LANG_SECTION_APPLICATIONS#>', '', 'a:5:{s:7:\"API_URL\";N;s:7:\"API_KEY\";s:0:\"\";s:12:\"API_USERNAME\";N;s:12:\"API_PASSWORD\";N;s:12:\"API_TERMINAL\";s:4:\"MAIN\";}', 0, 0, '2018-07-04 21:47:23'),
 (132, 'plans', '<#LANG_MODULE_PLANS#>', '<#LANG_SECTION_OBJECTS#>', '', NULL, 0, 0, '2019-02-28 12:04:11'),
-(133, 'homekit', 'HomeKit', '<#LANG_SECTION_DEVICES#>', '', NULL, 0, 0, '2019-02-28 12:29:18');
+(133, 'homekit', 'HomeKit', '<#LANG_SECTION_DEVICES#>', '', NULL, 0, 0, '2019-02-28 12:29:18'),
+(135, 'ha_discovery', 'HA Discovery', '<#LANG_SECTION_DEVICES#>', '', 'a:8:{s:9:\"MQTT_HOST\";s:9:\"localhost\";s:13:\"MQTT_USERNAME\";s:0:\"\";s:13:\"MQTT_PASSWORD\";s:0:\"\";s:9:\"MQTT_AUTH\";i:0;s:9:\"MQTT_PORT\";i:1883;s:10:\"BASE_TOPIC\";s:0:\"\";s:28:\"CREATE_DEVICES_AUTOMATICALLY\";i:1;s:10:\"DEBUG_MODE\";i:1;}', 0, 0, '2024-10-11 16:34:49');
 
 -- --------------------------------------------------------
 

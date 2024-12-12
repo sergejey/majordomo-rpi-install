@@ -13,6 +13,10 @@ runSudo "rm -Rf /opt/zigbee2mqtt"
 runSudo "git clone --depth 1 https://github.com/Koenkk/zigbee2mqtt.git /opt/zigbee2mqtt"
 runSudo "chown -R pi:pi /opt/zigbee2mqtt"
 
+
+sudo echo "homeassistant:">>/opt/zigbee2mqtt/data/configuration.yaml
+sudo echo "  legacy_entity_attributes: false">>/opt/zigbee2mqtt/data/configuration.yaml
+sudo echo "  legacy_triggers: false">>/opt/zigbee2mqtt/data/configuration.yaml
 sudo echo "frontend:">>/opt/zigbee2mqtt/data/configuration.yaml
 sudo echo "  port: 8080">>/opt/zigbee2mqtt/data/configuration.yaml
 sudo echo "  host: 0.0.0.0">>/opt/zigbee2mqtt/data/configuration.yaml
@@ -31,7 +35,7 @@ runSudo "cp ./resources/zigbee2mqtt.service /etc/systemd/system/zigbee2mqtt.serv
 runSudo "systemctl enable zigbee2mqtt.service"
 runSudo "service zigbee2mqtt start"
 
-installModule "zigbeedev"
+installModule "ha_discovery"
 # todo logrotate config
 
 showMessage "Zigbee2MQTT installed."

@@ -51,6 +51,13 @@ source "./sections/common.sh"
 if [ $set_install_ablog == "y" ]; then
   source "./sections/install_ablog_rpi4.sh"
 fi
+
+if checkOS "Ubuntu"; then
+  showMessage "Skipping hostname update."
+else
+ source "./sections/install_hostname.sh"
+fi
+
 if [ $set_static_ip == "y" ]; then
  source "./sections/install_static_ip.sh"
 fi
@@ -97,7 +104,7 @@ fi
 
 showMessage "Installation complete."
 showMessage "Log file for details: $LOG_FILE"
-showMessage "Open web-site: http://$IP_ADDRESS/"
+showMessage "Open web-site: http://$IP_ADDRESS/ or http://$dns_hostname.local"
 
 read -p "Do you want to reboot (y/n) [n]: " rebootnow
 rebootnow=${rebootnow:-n}
