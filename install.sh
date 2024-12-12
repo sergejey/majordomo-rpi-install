@@ -83,6 +83,7 @@ if [ $install_redis == "y" ]; then
  source "./sections/install_redis.sh"
 fi
 if [ $install_z2m == "y" ]; then
+ source "./sections/install_nodejs.sh"
  source "./sections/install_zigbee2mqtt.sh"
 fi
 if [ $install_homebridge == "y" ]; then

@@ -1,12 +1,11 @@
 #!/bin/bash
 
 showMessage "Installing Zigbee2MQTT..."
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-runSudo "apt-get install -y nodejs"
+
 runSudo "apt-get install -y make"
 runSudo "apt-get install -y g++"
 runSudo "apt-get install -y gcc"
-runSudo "apt-get install -y npm"
+
 runSudo "mkdir /opt/zigbee2mqtt"
 
 runSudo "rm -Rf /opt/zigbee2mqtt"
