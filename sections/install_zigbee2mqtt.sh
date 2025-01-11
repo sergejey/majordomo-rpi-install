@@ -30,6 +30,7 @@ runSudo "npm ci"
 
 cd $destPath/majordomo-rpi-install
 
+runSudo "chmod -R 777 /opt/zigbee2mqtt"
 runSudo "cp ./resources/zigbee2mqtt.service /etc/systemd/system/zigbee2mqtt.service"
 runSudo "systemctl enable zigbee2mqtt.service"
 runSudo "service zigbee2mqtt start"

@@ -105,6 +105,8 @@ else
  source "./sections/install_hostname.sh"
 fi
 
+source "./sections/post_install.sh"
+
 showMessage "Installation complete."
 showMessage "Log file for details: $LOG_FILE"
 showMessage "Open web-site: http://$IP_ADDRESS/ or http://$dns_hostname.local"
