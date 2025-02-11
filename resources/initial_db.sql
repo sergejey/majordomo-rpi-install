@@ -257,6 +257,15 @@ INSERT INTO `blockly_code` (`ID`, `SYSTEM_NAME`, `CODE_TYPE`, `CODE`, `XML`, `UP
 (362, 'webvar6', 0, '', '', '2021-05-04 21:47:46');
 
 -- --------------------------------------------------------
+DROP TABLE IF EXISTS `blockly_code_history`;
+CREATE TABLE `blockly_code_history` (
+                                        `ID` int(10) UNSIGNED NOT NULL,
+                                        `SYSTEM_NAME` varchar(255) NOT NULL DEFAULT '',
+                                        `CODE_TYPE` int(3) NOT NULL DEFAULT 0,
+                                        `CODE` text DEFAULT NULL,
+                                        `XML` text DEFAULT NULL,
+                                        `ADDED` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Table structure for table `cached_cycles`
