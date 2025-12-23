@@ -12,7 +12,7 @@ runSudo "mkdir /opt/zigbee2mqtt"
 
 runSudo "rm -Rf /opt/zigbee2mqtt"
 runSudo "git clone --depth 1 https://github.com/Koenkk/zigbee2mqtt.git /opt/zigbee2mqtt"
-runSudo "chown -R pi:pi /opt/zigbee2mqtt"
+runSudo "chown -R $pi_username:$pi_username /opt/zigbee2mqtt"
 
 cd /opt/zigbee2mqtt/
 runSudo "pnpm i --frozen-lockfile"

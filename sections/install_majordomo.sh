@@ -44,11 +44,11 @@ sudo sed -i "s/'\/var\/www'/'\/var\/www\/html'/" /var/www/html/config.php
 
 # DATABASE
 showMessage "Installing MajorDoMo database."
-mysql -u root -p$db_root << EOF
+mysql -u root --password="$db_root" << EOF
 CREATE DATABASE db_terminal CHARACTER SET utf8 COLLATE utf8_general_ci;
 EOF
 
-mysql -u root -p$db_root db_terminal<./resources/initial_db.sql
+mysql -u root --password="$db_root" db_terminal<./resources/initial_db.sql
 
 # SERVICE
 showMessage "Installing MajorDoMo service."

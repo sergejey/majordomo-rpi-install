@@ -1,5 +1,8 @@
 #!/bin/bash
 
+read -p "Please enter system default username [$USER]: " pi_username
+pi_username=${pi_username:-$USER}
+
 read -p "Do you have ab-log RPI4Poe module [n]: " set_install_ablog
 set_install_ablog=${set_install_ablog:-n}
 
