@@ -27,6 +27,7 @@ runSudo "service prepare-dirs start"
 
 # Update MariaDB settings
 sudo sed -i "s/datadir                 = \/var\/lib\/mysql/datadir                 = \/tmp\/mysql/" /etc/mysql/mariadb.conf.d/50-server.cnf
+replaceString "/etc/mysql/mariadb.conf.d/50-server.cnf" "#datadir" "datadir"
 
 replaceString "/etc/init.d/mariadb" "Required-Start:    \$remote_fs \$syslog" "Required-Start:    \$remote_fs \$syslog prepare-dirs"
 runSudo "service mysql start"
