@@ -11,5 +11,6 @@ fi
 runSudo "service mosquitto restart"
 
 installModule "mqtt"
+installModule "ha_discovery"
 
 showMessage "Mosquitto installed."

@@ -30,6 +30,4 @@ runSudo "cp ./resources/zigbee2mqtt.service /etc/systemd/system/zigbee2mqtt.serv
 runSudo "systemctl enable zigbee2mqtt.service"
 runSudo "service zigbee2mqtt start"
 
-installModule "ha_discovery"
-
 showMessage "Zigbee2MQTT installed."
