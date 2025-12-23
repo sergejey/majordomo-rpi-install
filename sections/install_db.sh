@@ -2,11 +2,7 @@
 
 showMessage "Installing MariaDB..."
 
-runSudo "apt-get install -y mariadb-server"
-runSudo "apt-get install -y mariadb-common"
-runSudo "apt-get install -y python3-dev default-libmysqlclient-dev build-essential"
-runSudo "apt-get install -y mariadb-client"
-runSudo "apt-get install -y dbconfig-mysql"
+for i in mariadb-server mariadb-common python3-dev default-libmysqlclient-dev build-essential mariadb-client dbconfig-mysql; do runSudo "apt-get install -y $i"; done
 
 showMessage "MariaDB installed."
 
