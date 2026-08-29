@@ -3,7 +3,6 @@
 showMessage "Installing RHVoice speech engine..."
 
 runSudo "apt-get install -y mplayer"
-runSudo "apt-get install -y alsa-base"
 runSudo "apt-get install -y alsa-utils"
 runSudo "apt-get install -y alsa-tools"
 runSudo "apt-get install -y libao4"
@@ -17,7 +16,6 @@ runSudo "apt-get install -y gcc"
 runSudo "apt-get install -y g++"
 runSudo "apt-get install -y pkg-config"
 runSudo "apt-get install -y scons"
-runSudo "apt-get install -y python-lxml"
 runSudo "apt-get install -y python3-lxml"
 runSudo "apt-get install -y libpulse-dev"
 runSudo "apt-get install -y portaudio19-dev"
@@ -37,7 +35,7 @@ default-fragment-size-msec = 25
 EOF
 
 git clone --recurse-submodules https://github.com/RHVoice/RHVoice.git
-cd RHVoice
+cd RHVoice || return
 runSudo "scons"
 runSudo "scons install"
 runSudo "ldconfig"

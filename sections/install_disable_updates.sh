@@ -1,8 +1,11 @@
 #!/bin/bash
 
 showMessage "Disabling daily updates..."
-sudo systemctl stop apt-daily.timer
-sudo systemctl disable apt-daily.timer
-sudo systemctl disable apt-daily.service
+for u in apt-daily.timer apt-daily-upgrade.timer; do
+  sudo systemctl stop "$u"
+  sudo systemctl disable "$u"
+  sudo systemctl mask "$u"
+done
+sudo systemctl disable --now unattended-upgrades.service 2>/dev/null
 sudo systemctl daemon-reload
 showMessage "Done"

@@ -1,6 +1,9 @@
 # majordomo-rpi-install
 
-Installation script to setup __MajorDoMo__ home automation platform on __Rasbperry Pi OS (bullseye)__ [also tested with servers running Ubuntu 20/22].
+Installation script to setup __MajorDoMo__ home automation platform on __Raspberry Pi OS__ [also tested with servers running Ubuntu 20/22/24].
+
+Supported/tested targets: Raspberry Pi OS Bookworm (12) and Trixie (13), 64-bit.
+Raspberry Pi 5 requires the __64-bit (arm64)__ image - the armhf image will not boot.
 
 Prerequisites
 * Raspbian (or Ubuntu) OS image should be installed
@@ -48,10 +51,12 @@ Big thanks to **prmres** for [original idea](https://mjdm.ru/forum/viewtopic.php
 
 ## Headless setup
 
-1. Download latest [Raspian Lite](https://downloads.raspberrypi.org/raspios_lite_armhf/images/) image
+1. Download latest [Raspberry Pi OS Lite (arm64)](https://downloads.raspberrypi.org/raspios_lite_arm64/images/) image
 2. Burn image to SSD card (or eMMC disk) with [Balena Etcher](https://www.balena.io/etcher/) or [Win32DiskImager](https://sourceforge.net/projects/win32diskimager/)
 3. Create empty file called _ssh_ in the root of boot disk
-4. Create _userconf.txt_ file in the same folder with following content:
+4. Create _userconf.txt_ file in the same folder with `username:encrypted-password`
+   (there is no default _pi_ / _raspberry_ account any more; the easiest way is
+   to set the user name and password in Raspberry Pi Imager). Sample line:
 >pi:$6$ghKLjE2C3qTJZtde$AjJ9HXBpawoN/iqCTU8KBtaOngUx5GLY0qkEJP0F7VKTLL5fkX7q9K4oSiZYVFJBc09NocagToQzbnNz/eph71
 5. Reboot Raspberry Pi and connect to it using SSH protocol and following username/password:  
    _pi_ / _raspberry_

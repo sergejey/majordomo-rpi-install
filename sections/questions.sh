@@ -14,7 +14,7 @@ majordomo_branch=${majordomo_branch:-m}
 
 read -p "Do you want to restore system from CONNECT backup [n]: " backup_restore
 backup_restore=${backup_restore:-n}
-if [ $backup_restore == "y" ]; then
+if [ "$backup_restore" = "y" ]; then
  read -p "Please enter CONNECT username: " backup_username
  read -p "Please enter backup code: " backup_code
 fi
@@ -28,7 +28,7 @@ fi
 read -p "Do you want to have DB in memory storage [$db_to_memory_default]: " db_to_memory
 db_to_memory=${db_to_memory:-$db_to_memory_default}
 
-if [ $db_to_memory == "y" ]; then
+if [ "$db_to_memory" = "y" ]; then
  read -p "How much memory to reserve for DB, Mb [150]: " memory_storage_size
  memory_storage_size=${memory_storage_size:-150}
 fi
@@ -61,7 +61,7 @@ fi
 read -p "Do you want to set static IP address [$set_static_ip_default]: " set_static_ip
 set_static_ip=${set_static_ip:-$set_static_ip_default}
 
-if [ $set_static_ip == "y" ]; then
+if [ "$set_static_ip" = "y" ]; then
  read -p "IP address to use [$IP_ADDRESS]: " static_ip_address
  static_ip_address=${static_ip_address:-$IP_ADDRESS}
  IP_ADDRESS=${static_ip_address}

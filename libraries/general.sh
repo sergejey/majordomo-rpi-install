@@ -1,6 +1,16 @@
 #!/bin/bash
 
 osVersion=$(cat /etc/issue.net)
+if [ -d /boot/firmware ]; then
+  BOOT_PATH="/boot/firmware"
+else
+  BOOT_PATH="/boot"
+fi
+if [ -f /proc/device-tree/model ]; then
+  PI_MODEL=$(tr -d '\0' < /proc/device-tree/model)
+else
+  PI_MODEL=""
+fi
 echo "OS: $osVersion" >> $LOG_FILE
 
 function checkOS {
@@ -18,6 +28,18 @@ function showMessage {
   echo "" >> $LOG_FILE
 }
 
+function appendAsRoot {
+  #$1 - text, $2 - file
+  showMessage "Appending to $2: $1"
+  echo "$1" | sudo tee -a "$2" >>"$LOG_FILE"
+}
+
+function writeAsRoot {
+  #$1 - text, $2 - file
+  showMessage "Writing to $2"
+  echo "$1" | sudo tee "$2" >>"$LOG_FILE"
+}
+
 function isVM {
  if lspci | grep -q "VirtualBox"; then
   return 0
@@ -26,9 +48,17 @@ function isVM {
  fi
 }
 
+function majordomoWebCall {
+  #$1 - url
+  wget -q -O- "$1" 2>>"$LOG_FILE" \
+    | sed -e 's/<script[^>]*>[^<]*<\/script>//g' -e 's/<[^>]*>/ /g' -e 's/&nbsp;/ /g' \
+    | tr -s '[:space:]' ' ' | cut -c1-1000 >>"$LOG_FILE"
+  echo >>"$LOG_FILE"
+}
+
 function installModule {
   showMessage "Installing module $1"
-  wget -q http://localhost/modules/market/update_iframe.php?mode2=install\&name=$1
+  majordomoWebCall "http://localhost/modules/market/update_iframe.php?mode2=install&name=$1"
 }
 
 function runSudoNoLog {
@@ -36,9 +66,15 @@ function runSudoNoLog {
   sudo sh -c "$1"
 }
 
+function runSudoSecret {
+  #$1 - command, $2 - description for the log
+  showMessage "Running: ${2:-<hidden command>}"
+  sudo sh -c "$1" 2>>"$LOG_FILE"
+}
+
 function runSudo {
   showMessage "Running: $1"
-  sudo sh -c "$1 >>$LOG_FILE"
+  sudo sh -c "$1 >>$LOG_FILE 2>&1"
 }
 
 function replaceString {
@@ -53,9 +89,7 @@ function replaceString {
       if  grep -q "$3" "$1" ; then
        showMessage "Ignoring ('$3' already found in file $1)."
       else
-       #findString="$(printf '%q' "$2")"
        findString="$2"
-       #replaceString="$(printf '%q' "$3")"
        replaceString="$3"
        runSudo "sed -i 's/$findString/$replaceString/' $1"
       fi
@@ -74,9 +108,7 @@ function replaceStringForce {
     if  ! grep -q "$2" "$1" ; then
       showMessage "Ignoring ('$2' not found in file $1)."
     else
-      #findString="$(printf '%q' "$2")"
       findString="$2"
-      #replaceString="$(printf '%q' "$3")"
       replaceString="$3"
       runSudo "sed -i 's/$findString/$replaceString/' $1"
     fi

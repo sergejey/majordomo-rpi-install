@@ -50,7 +50,7 @@ done)>> "$stdout_log" 2>> "$stderr_log" &
         echo -n "Stopping $name.."
         kill `get_pid`
         sudo killall php
-        for i in {1..10}
+        for i in 1 2 3 4 5 6 7 8 9 10
         do
             if ! is_running; then
                 break

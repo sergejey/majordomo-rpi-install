@@ -4,14 +4,16 @@ showMessage "Installing PHP..."
 showMessage "Using default PHP version."
 runSudo "apt-get install -y php"
 
-PHPVERSION=$(ls -Art1 /etc/php | tail -n 1)
+PHPVERSION=$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;' 2>/dev/null)
+if [ -z "$PHPVERSION" ]; then
+  PHPVERSION=$(ls -1 /etc/php | sort -V | tail -n 1)
+fi
 
 showMessage "PHP version installed: $PHPVERSION"
 
 runSudo "apt-get install -y libapache2-mod-php$PHPVERSION"
 runSudo "apt-get install -y php$PHPVERSION-mysql"
 runSudo "apt-get install -y php$PHPVERSION-common"
-runSudo "apt-get install -y php$PHPVERSION-json"
 runSudo "apt-get install -y php$PHPVERSION-opcache"
 runSudo "apt-get install -y php$PHPVERSION-readline"
 runSudo "apt-get install -y php$PHPVERSION-bz2"
@@ -21,12 +23,8 @@ runSudo "apt-get install -y php$PHPVERSION-gd"
 runSudo "apt-get install -y php$PHPVERSION-mbstring"
 runSudo "apt-get install -y php$PHPVERSION-xml"
 runSudo "apt-get install -y php$PHPVERSION-bcmath"
-#sudo apt-get install -y php$PHPVERSION-mcrypt"
 runSudo "apt-get install -y php$PHPVERSION-zip"
 runSudo "apt-get install -y php$PHPVERSION-redis"
-
-runSudo 'echo "<?php phpinfo(); ?>">/var/www/html/php.php'
-runSudo 'chown www-data:www-data /var/www/html/php.php'
 
 # Update php.ini config
 runSudo "sed -i '/post_max_size/s/8/200/' /etc/php/$PHPVERSION/apache2/php.ini"

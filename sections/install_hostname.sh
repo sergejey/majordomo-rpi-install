@@ -2,14 +2,16 @@
 
 showMessage "Installing DNS record"
 
-runSudo "apt-get install avahi-daemon"
+runSudo "apt-get install -y avahi-daemon"
 runSudo "systemctl enable avahi-daemon.service"
 runSudo "systemctl start avahi-daemon.service"
 
-replaceString "/etc/hostname" "raspberrypi" "$dns_hostname"
-replaceString "/etc/hostname" "raspberry" "$dns_hostname"
-replaceString "/etc/hostname" "raspdesktop" "$dns_hostname"
-replaceString "/etc/hosts" "raspberrypi" "$dns_hostname"
-replaceString "/etc/hosts" "raspdesktop" "$dns_hostname"
+# /etc/hosts still points at the old name, so replace it before the rename
+OLD_HOSTNAME=$(hostname)
+if [ -n "$OLD_HOSTNAME" ] && [ "$OLD_HOSTNAME" != "$dns_hostname" ]; then
+  replaceStringForce "/etc/hosts" "$OLD_HOSTNAME" "$dns_hostname"
+fi
 
-showMessage "DNS record installed."
+runSudo "hostnamectl set-hostname $dns_hostname"
+
+showMessage "DNS record installed ($dns_hostname.local)."
